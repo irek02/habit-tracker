@@ -2,17 +2,19 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CalendarComponent } from './calendar.component';
+import { StorageService } from '../storage.service';
 
 @Component({
   template: `
-    <app-calendar [year]="year" [month]="month"></app-calendar>`
+    <app-calendar
+      [year]="year"
+      [month]="month">
+    </app-calendar>`
 })
 class HostComponent {
-
   // July, 2018.
   year = 2018;
   month = 6;
-
 }
 
 fdescribe('CalendarComponent', () => {
@@ -20,9 +22,13 @@ fdescribe('CalendarComponent', () => {
   let fixture: ComponentFixture<HostComponent>;
   let host;
   let el;
+  let storageServiceSpy: jasmine.SpyObj<StorageService>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [
+        { provide: StorageService, useValue: jasmine.createSpyObj('StorageService', ['getCheckedSlots']) }
+      ],
       declarations: [ CalendarComponent, HostComponent ]
     })
     .compileComponents();
@@ -31,8 +37,14 @@ fdescribe('CalendarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HostComponent);
     host = fixture.componentInstance;
-    // el = fixture.nativeElement.querySelector('.hero');
+    storageServiceSpy = TestBed.get(StorageService);
+  });
+
+  beforeEach(() => {
+
+    storageServiceSpy.getCheckedSlots.and.returnValue([]);
     fixture.detectChanges();
+
   });
 
   describe('July, 2018', () => {
@@ -40,7 +52,7 @@ fdescribe('CalendarComponent', () => {
     it('should show calendar', () => {
 
       el = fixture.nativeElement.querySelector('.calendar');
-      // console.log(fixture.nativeElement);
+
       expect(el).toBeTruthy();
 
     });
@@ -55,43 +67,34 @@ fdescribe('CalendarComponent', () => {
 
     it('should show the date of a day', () => {
 
-      // el = fixture.nativeElement.querySelectorAll('.day .date');
       el = fixture.nativeElement.querySelector('#july-15-2018 .date');
-
-      console.log(fixture.nativeElement);
 
       expect(el.textContent).toBe('15');
 
-      // July 1st.
-      // expect(el[0].textContent).toBe('1');
+    });
 
-      // // July 16st.
-      // expect(el[15].textContent).toBe('16');
+    it('should show 5 habit slots in the day', () => {
 
-      // // July 31st.
-      // expect(el[30].textContent).toBe('31');
+      el = fixture.nativeElement.querySelectorAll('#july-15-2018 .slot');
+
+      expect(el.length).toBe(5);
 
     });
 
-    // it('should show 5 slots in the day', () => {
+    it('should show checked habit slots in the day', () => {
 
-    //   el = fixture.nativeElement.querySelectorAll('.day')[0];
+      storageServiceSpy.getCheckedSlots.and.returnValue(['july-15-2018--1', 'july-15-2018--4']);
 
-    //   console.log(fixture.nativeElement.querySelectorAll('.day')[0]);
+      fixture.detectChanges();
 
-    //   // // July 1st.
-    //   // expect(el[0].textContent).toContain(1);
+      expect(fixture.nativeElement.querySelector('#july-15-2018 .slot.slot-1.checked')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('#july-15-2018 .slot.slot-2.checked')).toBeFalsy();
+      expect(fixture.nativeElement.querySelector('#july-15-2018 .slot.slot-3.checked')).toBeFalsy();
+      expect(fixture.nativeElement.querySelector('#july-15-2018 .slot.slot-4.checked')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('#july-15-2018 .slot.slot-5.checked')).toBeFalsy();
 
-    //   // // July 16st.
-    //   // expect(el[15].textContent).toContain(16);
-
-    //   // // July 31st.
-    //   // expect(el[30].textContent).toContain(31);
-
-    // });
+    });
 
   });
-
-
 
 });

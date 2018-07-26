@@ -12,7 +12,7 @@ import { CalendarComponent } from './calendar/calendar.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [Storage],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

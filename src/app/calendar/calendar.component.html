@@ -1,8 +1,13 @@
 <div class="calendar">
   <table>
     <tr *ngFor="let week of calendar">
-      <td *ngFor="let day of week" id="{{ this.month + '-' + this.year + '-' + day }}" [ngClass]="{'day': day !== 0}">
+      <td *ngFor="let day of week" id="{{ this.getDayId(day) }}" [ngClass]="{'day': day !== 0}">
         <div class="date">{{ day }}</div>
+        <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(day, 1)}"></div>
+        <div [ngClass]="{'slot': true, 'slot-2': true, 'checked': isSlotChecked(day, 2)}"></div>
+        <div [ngClass]="{'slot': true, 'slot-3': true, 'checked': isSlotChecked(day, 3)}"></div>
+        <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(day, 4)}"></div>
+        <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(day, 5)}"></div>
       </td>
     </tr>
   </table>
