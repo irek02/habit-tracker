@@ -45,13 +45,50 @@ fdescribe('CalendarComponent', () => {
 
     });
 
-    it('should show 31 dates', () => {
+    it('should show 31 days', () => {
 
-      el = fixture.nativeElement.querySelectorAll('.date');
-      // console.log(fixture.nativeElement);
+      el = fixture.nativeElement.querySelectorAll('.day');
+
       expect(el.length).toBe(31);
 
     });
+
+    it('should show the date of a day', () => {
+
+      // el = fixture.nativeElement.querySelectorAll('.day .date');
+      el = fixture.nativeElement.querySelector('#july-15-2018 .date');
+
+      console.log(fixture.nativeElement);
+
+      expect(el.textContent).toBe('15');
+
+      // July 1st.
+      // expect(el[0].textContent).toBe('1');
+
+      // // July 16st.
+      // expect(el[15].textContent).toBe('16');
+
+      // // July 31st.
+      // expect(el[30].textContent).toBe('31');
+
+    });
+
+    // it('should show 5 slots in the day', () => {
+
+    //   el = fixture.nativeElement.querySelectorAll('.day')[0];
+
+    //   console.log(fixture.nativeElement.querySelectorAll('.day')[0]);
+
+    //   // // July 1st.
+    //   // expect(el[0].textContent).toContain(1);
+
+    //   // // July 16st.
+    //   // expect(el[15].textContent).toContain(16);
+
+    //   // // July 31st.
+    //   // expect(el[30].textContent).toContain(31);
+
+    // });
 
   });
 

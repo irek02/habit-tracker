@@ -1,7 +1,9 @@
 <div class="calendar">
   <table>
     <tr *ngFor="let week of calendar">
-      <td *ngFor="let day of week" [ngClass]="{'date': day !== 0}">{{ day }}</td>
+      <td *ngFor="let day of week" id="{{ this.month + '-' + this.year + '-' + day }}" [ngClass]="{'day': day !== 0}">
+        <div class="date">{{ day }}</div>
+      </td>
     </tr>
   </table>
 </div>
