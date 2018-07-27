@@ -7,7 +7,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarComponent
+    CalendarComponent,
   ],
   imports: [
     BrowserModule

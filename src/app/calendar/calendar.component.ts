@@ -14,6 +14,8 @@ export class CalendarComponent implements OnInit {
 
   calendar: string;
 
+  openDay: number;
+
   constructor(
     private storage: StorageService
   ) { }

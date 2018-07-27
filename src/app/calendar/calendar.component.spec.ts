@@ -9,7 +9,7 @@ import { StorageService } from '../storage.service';
     <app-calendar
       [year]="year"
       [month]="month">
-    </app-calendar>`
+     </app-calendar>`
 })
 class HostComponent {
   // July, 2018.
@@ -92,6 +92,39 @@ fdescribe('CalendarComponent', () => {
       expect(fixture.nativeElement.querySelector('#july-15-2018 .slot.slot-3.checked')).toBeFalsy();
       expect(fixture.nativeElement.querySelector('#july-15-2018 .slot.slot-4.checked')).toBeTruthy();
       expect(fixture.nativeElement.querySelector('#july-15-2018 .slot.slot-5.checked')).toBeFalsy();
+
+    });
+
+    it('should open the day view when clicked on the day', () => {
+
+      expect(fixture.nativeElement.querySelector('.open-day')).toBeFalsy();
+
+      fixture.nativeElement.querySelector('#july-15-2018').click();
+
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.open-day')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('.calendar')).toBeFalsy();
+
+    });
+
+    it('should close the day view when clicked on the close button', () => {
+
+      expect(fixture.nativeElement.querySelector('.open-day')).toBeFalsy();
+
+      fixture.nativeElement.querySelector('#july-15-2018').click();
+
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.open-day')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('.calendar')).toBeFalsy();
+
+      fixture.nativeElement.querySelector('.open-day .close').click();
+
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.open-day')).toBeFalsy();
+      expect(fixture.nativeElement.querySelector('.calendar')).toBeTruthy();
 
     });
 
