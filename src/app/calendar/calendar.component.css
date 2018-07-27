@@ -16,13 +16,19 @@ td {
   background-color: green;
 }
 
-.date {
+.date, .slot-1 {
   position: absolute;
+  left: 25%;
+  top: 25%;
 }
+
 
 .day, .open-day {
   flex-wrap: wrap;
+  position:relative;
 }
+
+
 
 .slot {
   width: 50%;
