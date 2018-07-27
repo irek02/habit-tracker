@@ -3,11 +3,11 @@
     <tr *ngFor="let week of calendar">
       <td *ngFor="let day of week" id="{{ this.getDayId(day) }}" [ngClass]="{'day': day !== 0}" (click)="openDay = day">
         <div class="date">{{ day }}</div>
-        <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(day, 1)}"></div>
-        <div [ngClass]="{'slot': true, 'slot-2': true, 'checked': isSlotChecked(day, 2)}"></div>
-        <div [ngClass]="{'slot': true, 'slot-3': true, 'checked': isSlotChecked(day, 3)}"></div>
-        <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(day, 4)}"></div>
-        <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(day, 5)}"></div>
+        <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(day, 1)}">s1</div>
+        <div [ngClass]="{'slot': true, 'slot-2': true, 'checked': isSlotChecked(day, 2)}">s2</div>
+        <div [ngClass]="{'slot': true, 'slot-3': true, 'checked': isSlotChecked(day, 3)}">s3</div>
+        <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(day, 4)}">s4</div>
+        <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(day, 5)}">s5</div>
       </td>
     </tr>
   </table>
@@ -16,9 +16,9 @@
 <div *ngIf="openDay" class="open-day">
   <div (click)="openDay = null" class="close">X</div>
   <div class="date">{{ openDay }}</div>
-  <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(openDay, 1)}"></div>
-  <div [ngClass]="{'slot': true, 'slot-2': true, 'checked': isSlotChecked(openDay, 2)}"></div>
-  <div [ngClass]="{'slot': true, 'slot-3': true, 'checked': isSlotChecked(openDay, 3)}"></div>
-  <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(openDay, 4)}"></div>
-  <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(openDay, 5)}"></div>
+  <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(openDay, 1)}" (click)="toggleSlot(openDay, 1)">s1</div>
+  <div [ngClass]="{'slot': true, 'slot-2': true, 'checked': isSlotChecked(openDay, 2)}" (click)="toggleSlot(openDay, 2)">s2</div>
+  <div [ngClass]="{'slot': true, 'slot-3': true, 'checked': isSlotChecked(openDay, 3)}" (click)="toggleSlot(openDay, 3)">s3</div>
+  <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(openDay, 4)}" (click)="toggleSlot(openDay, 4)">s4</div>
+  <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(openDay, 5)}" (click)="toggleSlot(openDay, 5)">s5</div>
 </div>

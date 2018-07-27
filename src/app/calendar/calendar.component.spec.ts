@@ -27,7 +27,7 @@ fdescribe('CalendarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: StorageService, useValue: jasmine.createSpyObj('StorageService', ['getCheckedSlots']) }
+        { provide: StorageService, useValue: jasmine.createSpyObj('StorageService', ['getCheckedSlots', 'addSlot', 'removeSlot']) }
       ],
       declarations: [ CalendarComponent, HostComponent ]
     })
@@ -110,8 +110,6 @@ fdescribe('CalendarComponent', () => {
 
     it('should close the day view when clicked on the close button', () => {
 
-      expect(fixture.nativeElement.querySelector('.open-day')).toBeFalsy();
-
       fixture.nativeElement.querySelector('#july-15-2018').click();
 
       fixture.detectChanges();
@@ -125,6 +123,42 @@ fdescribe('CalendarComponent', () => {
 
       expect(fixture.nativeElement.querySelector('.open-day')).toBeFalsy();
       expect(fixture.nativeElement.querySelector('.calendar')).toBeTruthy();
+
+    });
+
+    it('should toggle the unchecked slot by clicking', () => {
+
+      fixture.nativeElement.querySelector('#july-15-2018').click();
+
+      fixture.detectChanges();
+
+      // expect(fixture.nativeElement.querySelector('.open-day .slot.slot-1.checked')).toBeFalsy();
+
+      fixture.nativeElement.querySelector('.open-day .slot.slot-1').click();
+
+      fixture.detectChanges();
+
+      // expect(fixture.nativeElement.querySelector('.open-day .slot.slot-1.checked')).toBeTruthy();
+
+      expect(storageServiceSpy.addSlot).toHaveBeenCalledWith('july-15-2018--1');
+
+    });
+
+    it('should toggle the checked slot by clicking', () => {
+
+      storageServiceSpy.getCheckedSlots.and.returnValue(['july-15-2018--1']);
+
+      fixture.nativeElement.querySelector('#july-15-2018').click();
+
+      fixture.detectChanges();
+
+      fixture.nativeElement.querySelector('.open-day .slot.slot-1').click();
+
+      fixture.detectChanges();
+
+      // expect(fixture.nativeElement.querySelector('.open-day .slot.slot-1.checked')).toBeTruthy();
+
+      expect(storageServiceSpy.removeSlot).toHaveBeenCalledWith('july-15-2018--1');
 
     });
 

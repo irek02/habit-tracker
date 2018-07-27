@@ -54,9 +54,25 @@ export class CalendarComponent implements OnInit {
 
   isSlotChecked(day: number, slot: number) {
 
-    const slotId = this.getDayId(day) + '--' + slot;
+    const slotId = this.getSlotId(day, slot);
 
     return this.storage.getCheckedSlots().includes(slotId);
+
+  }
+
+  toggleSlot(day: number, slot: number) {
+
+    if (!this.isSlotChecked(day, slot)) {
+      this.storage.addSlot(this.getSlotId(day, slot));
+    } else {
+      this.storage.removeSlot(this.getSlotId(day, slot));
+    }
+
+  }
+
+  getSlotId(day: number, slot: number) {
+
+    return this.getDayId(day) + '--' + slot;
 
   }
 

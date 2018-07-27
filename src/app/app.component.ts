@@ -14,8 +14,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(calendar);
-
     const cmon = new calendar.Calendar(0);
 
     console.log(new calendar.Calendar(0).monthDays(2018, 6));
