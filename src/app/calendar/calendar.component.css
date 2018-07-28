@@ -1,14 +1,9 @@
 table {
   border-collapse: collapse;
-  /* box-shadow: 0 0 2px #000000; */
 }
 
 td {
   border: 1px solid #000000;
-  /* padding: 1px 1px 0;
-  margin: -1px 0 0 -1px;
-  border-top: 1px solid #000000;
-  border-left: 1px solid #000000; */
   width: 50px;
 }
 
@@ -27,8 +22,6 @@ td {
   flex-wrap: wrap;
   position:relative;
 }
-
-
 
 .slot {
   width: 50%;
