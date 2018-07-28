@@ -1,10 +1,10 @@
 table {
   border-collapse: collapse;
+  width: 100%;
 }
 
 td {
   border: 1px solid #000000;
-  width: 50px;
 }
 
 .checked {
@@ -17,13 +17,24 @@ td {
   top: 25%;
 }
 
+.date {
+  width: 50%;
+  text-align: center;
+}
+
+.slot-1 {
+  border-radius: 50%;
+}
 
 .day, .open-day {
+  display: flex;
   flex-wrap: wrap;
-  position:relative;
+  justify-content: center;
+  position: relative;
 }
 
 .slot {
-  width: 50%;
+  width: 45%;
   display: inline-block;
+  border: 1px solid red;
 }
