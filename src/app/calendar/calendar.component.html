@@ -19,12 +19,15 @@
   </table>
 </div>
 
-<div *ngIf="openDay" class="open-day">
+<div *ngIf="openDay">
   <div (click)="openDay = null" class="close">X</div>
-  <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(openDay, 1)}" (click)="toggleSlot(openDay, 1)">s1</div>
-  <div [ngClass]="{'slot': true, 'slot-2': true, 'checked': isSlotChecked(openDay, 2)}" (click)="toggleSlot(openDay, 2)">s2</div>
-  <div [ngClass]="{'slot': true, 'slot-3': true, 'checked': isSlotChecked(openDay, 3)}" (click)="toggleSlot(openDay, 3)">s3</div>
-  <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(openDay, 4)}" (click)="toggleSlot(openDay, 4)">s4</div>
-  <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(openDay, 5)}" (click)="toggleSlot(openDay, 5)">s5</div>
-  <div class="date">{{ openDay }}</div>
+  <div class="open-day">
+    <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(openDay, 1)}" (click)="toggleSlot(openDay, 1)">&nbsp;</div>
+    <div [ngClass]="{'slot': true, 'slot-2': true, 'checked': isSlotChecked(openDay, 2)}" (click)="toggleSlot(openDay, 2)">&nbsp;</div>
+    <div [ngClass]="{'slot': true, 'slot-3': true, 'checked': isSlotChecked(openDay, 3)}" (click)="toggleSlot(openDay, 3)">&nbsp;</div>
+    <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(openDay, 4)}" (click)="toggleSlot(openDay, 4)">&nbsp;</div>
+    <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(openDay, 5)}" (click)="toggleSlot(openDay, 5)">&nbsp;</div>
+    <div class="date">{{ openDay }}</div>
+  </div>
+
 </div>
