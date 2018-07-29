@@ -28,7 +28,7 @@ td .content {
   right: 0;
 }
 
-.checked {
+.slot.checked {
   background-color: green;
 }
 
@@ -41,16 +41,35 @@ td .content {
   height: 100%;
 }
 
-/* .open-day:after {
+.container-day {
+  position: relative;
+}
+
+.container-day .content:after {
   content: "";
   display: block;
   padding-bottom: 100%;
-} */
+}
+
+.container-day .content .day {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.container-day .date .content {
+  padding-top: 23%;
+  font-size: 421%;
+}
 
 .date .content {
   padding-top: 23%;
   font-size: 76%;
 }
+
+
 
 .slot {
   border: 1px solid #000000;
