@@ -10,24 +10,29 @@ table {
 td {
   border: 2px solid #000000;
   padding: 0;
+  width: 14.28%;
+  position: relative;
+}
+
+td:after {
+  content: '';
+  display: block;
+  margin-top: 100%;
+}
+
+td .content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .checked {
   background-color: green;
 }
 
-.date, .slot-1 {
-  position: absolute;
-  left: 25%;
-  top: 25%;
-}
-
-.date {
-  width: 50%;
-  text-align: center;
-}
-
-.day, .open-day {
+.day {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
@@ -36,13 +41,32 @@ td {
   height: 100%;
 }
 
+/* .open-day:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+} */
+
+.date .content {
+  padding-top: 23%;
+  font-size: 76%;
+}
+
 .slot {
   border: 1px solid #000000;
 }
 
 .slot-1 {
+  position: absolute;
+  left: 0;
+  top: 29%;
+  right: 0;
+  width: 40%;
+  height: 40%;
+  margin: auto auto;
   border-radius: 50%;
   background-color: #ffffff;
+  text-align: center;
 }
 
 .slot-2, .slot-4 {
