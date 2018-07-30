@@ -5,7 +5,7 @@ import { StorageService } from '../storage.service';
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
+  styleUrls: ['./calendar.component.less']
 })
 export class CalendarComponent implements OnInit {
 
