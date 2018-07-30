@@ -5,17 +5,13 @@
       <tr *ngFor="let week of calendar">
         <td *ngFor="let day of week" id="{{ this.getDayId(day) }}" (click)="openDay = day">
 
-          <div class="content">
+          <div *ngIf="day" class="day">
 
-            <div *ngIf="day" class="day">
-
-              <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(day, 1), 'date': true}"><div class="content">{{ day }}</div></div>
-              <div [ngClass]="{'slot': true, 'slot-2': true, 'checked': isSlotChecked(day, 2)}">&nbsp;</div>
-              <div [ngClass]="{'slot': true, 'slot-3': true, 'checked': isSlotChecked(day, 3)}">&nbsp;</div>
-              <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(day, 4)}">&nbsp;</div>
-              <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(day, 5)}">&nbsp;</div>
-
-            </div>
+            <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(day, 1), 'date': true}"><div class="content">{{ day }}</div></div>
+            <div [ngClass]="{'slot': true, 'slot-2': true, 'checked': isSlotChecked(day, 2)}">&nbsp;</div>
+            <div [ngClass]="{'slot': true, 'slot-3': true, 'checked': isSlotChecked(day, 3)}">&nbsp;</div>
+            <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(day, 4)}">&nbsp;</div>
+            <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(day, 5)}">&nbsp;</div>
 
           </div>
 
@@ -26,9 +22,9 @@
 
   <div *ngIf="openDay" class="open-day">
     <div (click)="openDay = null" class="close">X</div>
-    <div class="container-day">
+    <!-- <div class="container-day">
 
-      <div class="content">
+      <div class="content"> -->
 
         <div class="day">
           <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(openDay, 1), 'date': true}" (click)="toggleSlot(openDay, 1)"><div class="content">{{ openDay }}</div></div>
@@ -38,9 +34,9 @@
           <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(openDay, 5)}" (click)="toggleSlot(openDay, 5)">&nbsp;</div>
         </div>
 
-      </div>
+      <!-- </div>
 
-    </div>
+    </div> -->
 
   </div>
 

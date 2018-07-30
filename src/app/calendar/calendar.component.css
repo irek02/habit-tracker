@@ -4,28 +4,16 @@
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  width: 370px;
+  height: 260px;
 }
 
 td {
   border: 2px solid #000000;
   padding: 0;
-  width: 14.28%;
+  width: 52px;
+  height: 52px;
   position: relative;
-}
-
-td:after {
-  content: '';
-  display: block;
-  margin-top: 100%;
-}
-
-td .content {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
 }
 
 .slot.checked {
@@ -41,35 +29,20 @@ td .content {
   height: 100%;
 }
 
-.container-day {
-  position: relative;
-}
-
-.container-day .content:after {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
-}
-
-.container-day .content .day {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.container-day .date .content {
-  padding-top: 23%;
-  font-size: 421%;
-}
-
 .date .content {
-  padding-top: 23%;
-  font-size: 76%;
+  line-height: 22px;
+  font-size: 14px;
 }
 
+.open-day .day {
+  width: 370px;
+  height: 370px;
+}
 
+.open-day .date .content {
+  line-height: 148px;
+  font-size: 63px;
+}
 
 .slot {
   border: 1px solid #000000;
