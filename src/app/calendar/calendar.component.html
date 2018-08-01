@@ -1,6 +1,14 @@
 <div class="main">
 
   <div *ngIf="!openDay" class="calendar">
+
+    <div class="year-month uk-text-center">
+      <div class="uk-text-large">{{ getMonthName(month) }}</div>
+      <div>{{ year }}</div>
+    </div>
+
+    <br>
+
     <table>
       <tr *ngFor="let week of calendar">
         <td *ngFor="let day of week" id="{{ this.getDayId(day) }}" (click)="openDay = day">
@@ -22,7 +30,7 @@
 
   <div *ngIf="openDay" class="open-day">
 
-    <div (click)="openDay = null" class="close" uk-icon="icon: chevron-left"></div>
+    <div (click)="openDay = null" class="close" uk-icon="icon: chevron-left; ratio: 2"></div>
 
         <div class="day">
           <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(openDay, 1), 'date': true}" (click)="toggleSlot(openDay, 1)"><div class="content">{{ openDay }}</div></div>

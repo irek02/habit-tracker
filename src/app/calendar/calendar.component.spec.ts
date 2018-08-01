@@ -162,6 +162,15 @@ fdescribe('CalendarComponent', () => {
 
     });
 
+    it('should show year and month', () => {
+
+      el = fixture.nativeElement.querySelector('.year-month');
+
+      expect(el.innerHTML).toContain('july');
+      expect(el.innerHTML).toContain('2018');
+
+    });
+
   });
 
 });
