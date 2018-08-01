@@ -21,10 +21,8 @@
   </div>
 
   <div *ngIf="openDay" class="open-day">
-    <div (click)="openDay = null" class="close">X</div>
-    <!-- <div class="container-day">
 
-      <div class="content"> -->
+    <div (click)="openDay = null" class="close" uk-icon="icon: chevron-left"></div>
 
         <div class="day">
           <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(openDay, 1), 'date': true}" (click)="toggleSlot(openDay, 1)"><div class="content">{{ openDay }}</div></div>
@@ -33,10 +31,6 @@
           <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(openDay, 4)}" (click)="toggleSlot(openDay, 4)">&nbsp;</div>
           <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(openDay, 5)}" (click)="toggleSlot(openDay, 5)">&nbsp;</div>
         </div>
-
-      <!-- </div>
-
-    </div> -->
 
   </div>
 

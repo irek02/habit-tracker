@@ -1,18 +1,19 @@
-/* .main {
-  height: 500px;
-} */
+@table-cell-size: 49px;
+@table-width: @table-cell-size * 7;
+@table-height: @table-cell-size * 5;
+@open-day-width: @table-width;
 
 table {
   border-collapse: collapse;
-  width: 370px;
-  height: 260px;
+  width: @table-width;
+  height: @table-height;
 }
 
 td {
   border: 2px solid #000000;
   padding: 0;
-  width: 52px;
-  height: 52px;
+  width: @table-cell-size;
+  height: @table-cell-size;
   position: relative;
 }
 
@@ -35,8 +36,8 @@ td {
 }
 
 .open-day .day {
-  width: 370px;
-  height: 370px;
+  width: @open-day-width;
+  height: @open-day-width
 }
 
 .open-day .date .content {
