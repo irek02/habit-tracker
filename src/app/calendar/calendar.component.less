@@ -1,4 +1,4 @@
-@table-cell-size: 49px;
+@table-cell-size: 45px;
 @table-width: @table-cell-size * 7;
 @table-height: @table-cell-size * 5;
 @open-day-width: @table-width;
@@ -13,7 +13,9 @@ td {
   border: 2px solid #000000;
   padding: 0;
   width: @table-cell-size;
+  min-width: @table-cell-size;
   height: @table-cell-size;
+  min-height: @table-cell-size;
   position: relative;
 }
 
@@ -31,8 +33,8 @@ td {
 }
 
 .date .content {
-  line-height: 22px;
-  font-size: 14px;
+  line-height: 18px;
+  font-size: 11px;
 }
 
 .open-day .day {
