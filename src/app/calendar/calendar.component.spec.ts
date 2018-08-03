@@ -162,9 +162,22 @@ fdescribe('CalendarComponent', () => {
 
     });
 
-    it('should show year and month', () => {
+    it('should show year and month in the calendar view', () => {
 
       el = fixture.nativeElement.querySelector('.year-month');
+
+      expect(el.innerHTML).toContain('july');
+      expect(el.innerHTML).toContain('2018');
+
+    });
+
+    it('should show year and month in the day view', () => {
+
+      fixture.nativeElement.querySelector('#july-15-2018').click();
+
+      fixture.detectChanges();
+
+      el = fixture.nativeElement.querySelector('.open-day .year-month');
 
       expect(el.innerHTML).toContain('july');
       expect(el.innerHTML).toContain('2018');
