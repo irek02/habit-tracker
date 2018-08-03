@@ -14,6 +14,7 @@ import {StorageProvider} from "../../providers/storage/storage";
 @Component({
   selector: 'page-calendar',
   templateUrl: 'calendar.html',
+  providers: [ StorageProvider ]
 })
 export class CalendarPage {
 
