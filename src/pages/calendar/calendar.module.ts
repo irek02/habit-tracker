@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
 import { CalendarPage } from './calendar';
+import {StorageProvider} from "../../providers/storage/storage";
 
 @NgModule({
   declarations: [
@@ -9,5 +10,8 @@ import { CalendarPage } from './calendar';
   imports: [
     IonicPageModule.forChild(CalendarPage),
   ],
+  providers: [
+    StorageProvider
+  ]
 })
 export class CalendarPageModule {}

@@ -7,12 +7,35 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>calendar</ion-title>
+    <ion-title>Habit tracker</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <div class="year-month uk-margin-bottom uk-text-center">
+    <div class="uk-text-large">{{ getMonthName(month) }}</div>
+    <div>{{ year }}</div>
+  </div>
+
+  <table>
+    <tr *ngFor="let week of calendar">
+      <td *ngFor="let day of week" id="{{ this.getDayId(day) }}" (click)="openDay = day">
+
+        <div *ngIf="day" class="day">
+
+          <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(day, 1), 'date': true}"><div class="content">{{ day }}</div></div>
+          <div [ngClass]="{'slot': true, 'slot-2': true, 'checked': isSlotChecked(day, 2)}"></div>
+          <div [ngClass]="{'slot': true, 'slot-3': true, 'checked': isSlotChecked(day, 3)}"></div>
+          <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(day, 4)}"></div>
+          <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(day, 5)}"></div>
+
+        </div>
+
+      </td>
+    </tr>
+  </table>
 
 </ion-content>
