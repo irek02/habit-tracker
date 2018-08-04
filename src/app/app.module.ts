@@ -9,9 +9,9 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {CalendarPage} from "../pages/calendar/calendar";
 import {DayPage} from "../pages/day/day";
 import { StorageProvider } from '../providers/storage/storage';
+import {CalendarPageModule} from "../pages/calendar/calendar.module";
 
 @NgModule({
   declarations: [
@@ -19,12 +19,12 @@ import { StorageProvider } from '../providers/storage/storage';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    CalendarPage,
     DayPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    CalendarPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,7 +32,6 @@ import { StorageProvider } from '../providers/storage/storage';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    CalendarPage,
     DayPage
   ],
   providers: [
