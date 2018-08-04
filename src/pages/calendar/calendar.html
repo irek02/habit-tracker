@@ -8,14 +8,14 @@
 </ion-header>
 
 
-<ion-content padding text-center>
+<ion-content padding>
 
   <div margin-bottom text-center class="year-month">
-    <div class="uk-text-large">{{ getMonthName(month) }}</div>
+    <div class="text-large">{{ getMonthName(month) }}</div>
     <div>{{ year }}</div>
   </div>
 
-  <table>
+  <table class="center">
     <tr *ngFor="let week of calendar">
       <td *ngFor="let day of week" id="{{ this.getDayId(day) }}" (click)="openDay = day">
 
