@@ -1,3 +1,90 @@
 page-calendar {
 
+  $table-cell-size: 45px;
+  $table-width: $table-cell-size * 7;
+  $table-height: $table-cell-size * 5;
+  $open-day-width: $table-width;
+
+  table {
+    border-collapse: collapse;
+  }
+
+  td {
+    border: 2px solid #000000;
+    padding: 0;
+    width: $table-cell-size;
+    min-width: $table-cell-size;
+    height: $table-cell-size;
+    min-height: $table-cell-size;
+    position: relative;
+  }
+
+  .slot.checked {
+    background-color: green;
+  }
+
+  .day {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .date .content {
+    line-height: 18px;
+    font-size: 11px;
+  }
+
+  .open-day .day {
+    width: $open-day-width;
+    height: $open-day-width;
+  }
+
+  .open-day .date .content {
+    line-height: 124px;
+    font-size: 63px;
+  }
+
+  .slot, .open-day .day {
+    border: 1px solid #000000;
+  }
+
+  .slot-1 {
+    position: absolute;
+    left: 0;
+    top: 29%;
+    right: 0;
+    width: 40%;
+    height: 40%;
+    margin: auto auto;
+    border-radius: 50%;
+    background-color: #ffffff;
+    text-align: center;
+  }
+
+  .slot-2, .slot-4 {
+    border-left: none;
+    border-top: none;
+  }
+
+  .slot-3, .slot-5 {
+    border-right: none;
+    border-left: none;
+  }
+
+  .slot-2, .slot-3 {
+    border-top: 1px solid transparent;
+  }
+
+  .slot-4, .slot-5 {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+  }
+
+  .year-month {
+    text-transform: capitalize;
+  }
+
 }
