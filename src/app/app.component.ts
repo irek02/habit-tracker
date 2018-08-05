@@ -17,7 +17,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = CalendarPage;
+  rootPage = HelloIonicPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -42,6 +42,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.nav.setRoot('calendar-page');
     });
   }
 
