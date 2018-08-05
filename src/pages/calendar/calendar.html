@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Hello Ionic</ion-title>
+    <ion-title>Calendar</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -17,7 +17,7 @@
 
   <table class="center">
     <tr *ngFor="let week of calendar">
-      <td *ngFor="let day of week" id="{{ this.getDayId(day) }}" (click)="openDay = day">
+      <td *ngFor="let day of week" id="{{ this.getDayId(day) }}" (click)="goToDay(day)">
 
         <div *ngIf="day" class="day">
 

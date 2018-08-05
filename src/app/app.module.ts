@@ -9,30 +9,29 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {DayPage} from "../pages/day/day";
 import { StorageProvider } from '../providers/storage/storage';
 import {CalendarPageModule} from "../pages/calendar/calendar.module";
+import {DayPageModule} from "../pages/day/day.module";
 
 @NgModule({
   declarations: [
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    ListPage,
-    DayPage
+    ListPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    CalendarPageModule
+    CalendarPageModule,
+    // DayPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    ListPage,
-    DayPage
+    ListPage
   ],
   providers: [
     StatusBar,

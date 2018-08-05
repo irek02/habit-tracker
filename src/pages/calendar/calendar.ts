@@ -10,7 +10,9 @@ import {StorageProvider} from "../../providers/storage/storage";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  segment: 'calendar'
+})
 @Component({
   selector: 'page-calendar',
   templateUrl: 'calendar.html',
@@ -23,7 +25,11 @@ export class CalendarPage {
   calendar: object;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: StorageProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public storage: StorageProvider
+  ) {
     this.year = 2018;
     this.month = 6;
     this.calendar = new calendar.Calendar(0).monthDays(this.year, this.month);
@@ -33,6 +39,14 @@ export class CalendarPage {
 
     return this.getMonthName(this.month) + '-' + day + '-' + this.year;
 
+  }
+
+  goToDay(day: number) {
+    this.navCtrl.push('DayPage', {
+      year: this.year,
+      month: this.month,
+      day: day
+    });
   }
 
   getMonthName(month: number) {
@@ -60,16 +74,6 @@ export class CalendarPage {
     const slotId = this.getSlotId(day, slot);
 
     return this.storage.getCheckedSlots().includes(slotId);
-
-  }
-
-  toggleSlot(day: number, slot: number) {
-
-    if (!this.isSlotChecked(day, slot)) {
-      this.storage.addSlot(this.getSlotId(day, slot));
-    } else {
-      this.storage.removeSlot(this.getSlotId(day, slot));
-    }
 
   }
 
