@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Calendar</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <div margin-bottom text-center class="year-month">
+    <div class="text-large">{{ getMonthName(month) }}</div>
+    <div>{{ year }}</div>
+  </div>
+
+  <table class="center">
+    <tr *ngFor="let week of calendar">
+      <td *ngFor="let day of week" id="{{ this.getDayId(day) }}" (click)="goToDay(day)">
+
+        <div *ngIf="day" class="day">
+
+          <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(day, 1), 'date': true}"><div class="content">{{ day }}</div></div>
+          <div [ngClass]="{'slot': true, 'slot-2': true, 'checked': isSlotChecked(day, 2)}"></div>
+          <div [ngClass]="{'slot': true, 'slot-3': true, 'checked': isSlotChecked(day, 3)}"></div>
+          <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(day, 4)}"></div>
+          <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(day, 5)}"></div>
+
+        </div>
+
+      </td>
+    </tr>
+  </table>
+
+</ion-content>
+
