@@ -9,7 +9,11 @@ import {StorageProvider} from "../../providers/storage/storage";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  name: 'day-page',
+  segment: 'day/:year/:month/:day',
+  defaultHistory: ['calendar-page']
+})
 @Component({
   selector: 'page-day',
   templateUrl: 'day.html',

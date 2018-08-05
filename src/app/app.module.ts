@@ -24,7 +24,7 @@ import {DayPageModule} from "../pages/day/day.module";
     BrowserModule,
     IonicModule.forRoot(MyApp),
     CalendarPageModule,
-    // DayPageModule
+    DayPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

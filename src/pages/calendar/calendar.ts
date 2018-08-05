@@ -11,6 +11,7 @@ import {StorageProvider} from "../../providers/storage/storage";
  */
 
 @IonicPage({
+  name: 'calendar-page',
   segment: 'calendar'
 })
 @Component({
@@ -42,7 +43,7 @@ export class CalendarPage {
   }
 
   goToDay(day: number) {
-    this.navCtrl.push('DayPage', {
+    this.navCtrl.push('day-page', {
       year: this.year,
       month: this.month,
       day: day
