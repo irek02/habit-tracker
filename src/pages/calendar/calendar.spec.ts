@@ -20,7 +20,7 @@ describe('Page1', () => {
   function els() {
     return {
       weekdayNames: fixture.nativeElement.querySelectorAll('.weekday-name'),
-      previousBtn: fixture.nativeElement.querySelector('.previousBtn')
+      previousBtn: fixture.debugElement.query(By.css('.previousBtn'))
     }
   }
 
@@ -79,14 +79,12 @@ describe('Page1', () => {
 
     fixture.detectChanges();
 
-    console.log(els().previousBtn);
-    els().previousBtn.click();
+    els().previousBtn.triggerEventHandler('click', null);
 
     expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
       year: 2018,
       month: 6
     });
-
 
     // After that, update CalendarPage to grab year/month from the URL to display the month.
     // Then implement the forward button.

@@ -43,7 +43,6 @@ export class CalendarPage {
   }
 
   goToPreviousMonth() {
-    console.log("calling!");
     this.navCtrl.push('calendar-page', {
       year: this.year,
       month: this.month - 1
