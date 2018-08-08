@@ -8,60 +8,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {StorageProvider} from "../../providers/storage/storage";
 import { spyOnClass } from 'jasmine-es6-spies';
 
-// @Component({
-//   template: `
-//     <ion-page-calendar
-//       [year]="year"
-//       [month]="month">
-//     </ion-page-calendar>
-//   `
-// })
-// class HostComponent {
-//   // July, 2018.
-//   year = 2018;
-//   month = 6;
-// }
-
 describe('Page1', () => {
-  // let fixture: ComponentFixture<HostComponent>;
-  // let host;
-  // let el;
-  // let storageServiceSpy: jasmine.SpyObj<StorageProvider>;
-  //
-  //
-  //
-  // beforeEach(async(() => {
-  //   TestBed.configureTestingModule({
-  //     imports: [
-  //       IonicModule.forRoot(CalendarPage)
-  //     ],
-  //     declarations: [ CalendarPage, HostComponent ],
-  //     providers: [
-  //       { provide: StorageProvider, useValue: spyOnClass(StorageProvider) },
-  //       NavController,
-  //       { provide: NavParams, useClass: class {} }
-  //     ],
-  //   })
-  //   .compileComponents();
-  // }));
-  //
-  // beforeEach(() => {
-  //   fixture = TestBed.createComponent(HostComponent);
-  //   host = fixture.componentInstance;
-  //   storageServiceSpy = TestBed.get(StorageProvider);
-  // });
-  //
-  // beforeEach(() => {
-  //
-  //   storageServiceSpy.getCheckedSlots.and.returnValue([]);
-  //   fixture.detectChanges();
-  //
-  // });
 
-  let de: DebugElement;
   let comp: CalendarPage;
   let fixture: ComponentFixture<CalendarPage>;
   let navParams: jasmine.SpyObj<NavParams>;
+
+  function els() {
+    return {
+      weekdayNames: fixture.nativeElement.querySelectorAll('.weekday-name')
+    }
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -71,7 +28,7 @@ describe('Page1', () => {
       ],
       providers: [
         NavController,
-        StorageProvider,
+        { provide: StorageProvider, useFactory: () => spyOnClass(StorageProvider) },
         { provide: NavParams, useFactory: () => spyOnClass(NavParams) }
       ]
     });
@@ -79,25 +36,26 @@ describe('Page1', () => {
 
 
   beforeEach(() => {
+
     fixture = TestBed.createComponent(CalendarPage);
     navParams = TestBed.get(NavParams);
     comp = fixture.componentInstance;
-    // console.log(fixture.detectChanges());
-    // de = fixture.debugElement.query(By.css('h3'));
+
   });
 
-  it('should have expected <h3> text', () => {
+
+  it('should show weekday names', () => {
+
     fixture.detectChanges();
-    expect(true).toBe(true);
 
-    // const h3 = de.nativeElement;
-    // expect(h3.innerText).toMatch(/ionic/i,
-    //   '<h3> should say something about "Ionic"');
+    expect(els().weekdayNames[0].innerHTML).toContain('Sun');
+    expect(els().weekdayNames[1].innerHTML).toContain('Mon');
+    expect(els().weekdayNames[2].innerHTML).toContain('Tue');
+    expect(els().weekdayNames[3].innerHTML).toContain('Wed');
+    expect(els().weekdayNames[4].innerHTML).toContain('Thu');
+    expect(els().weekdayNames[5].innerHTML).toContain('Fri');
+    expect(els().weekdayNames[6].innerHTML).toContain('Sat');
+
   });
 
-  // it('should show the favicon as <img>', () => {
-  //   fixture.detectChanges();
-  //   const img: HTMLImageElement = fixture.debugElement.query(By.css('img')).nativeElement;
-  //   expect(img.src).toContain('assets/icon/favicon.ico');
-  // });
 });

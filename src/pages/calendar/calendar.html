@@ -16,6 +16,15 @@
   </div>
 
   <table class="center">
+    <tr>
+      <td class="weekday-name">Sun</td>
+      <td class="weekday-name">Mon</td>
+      <td class="weekday-name">Tue</td>
+      <td class="weekday-name">Wed</td>
+      <td class="weekday-name">Thu</td>
+      <td class="weekday-name">Fri</td>
+      <td class="weekday-name">Sat</td>
+    </tr>
     <tr *ngFor="let week of calendar">
       <td *ngFor="let day of week" id="{{ this.getDayId(day) }}" (click)="goToDay(day)">
 

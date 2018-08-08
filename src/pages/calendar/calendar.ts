@@ -32,7 +32,7 @@ export class CalendarPage {
     public storage: StorageProvider
   ) {
     this.year = 2018;
-    this.month = 6;
+    this.month = 7;
     this.calendar = new calendar.Calendar(0).monthDays(this.year, this.month);
   }
 

@@ -10,7 +10,6 @@ import { Injectable } from '@angular/core';
 export class StorageProvider {
 
   constructor() {
-    console.log('Hello StorageProvider Provider');
   }
 
   getCheckedSlots(): Array<string> {
