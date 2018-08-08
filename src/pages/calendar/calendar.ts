@@ -31,9 +31,17 @@ export class CalendarPage {
     public navParams: NavParams,
     public storage: StorageProvider
   ) {
-    this.year = 2018;
-    this.month = 7;
+    // this.year = navParams.get('year');
+    // this.month = navParams.get('month');
     this.calendar = new calendar.Calendar(0).monthDays(this.year, this.month);
+  }
+
+  getYear() {
+    return this.navParams.get('year');
+  }
+
+  getMonth() {
+    return this.navParams.get('month');
   }
 
   getDayId(day: number) {

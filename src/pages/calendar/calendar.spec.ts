@@ -17,6 +17,9 @@ describe('Page1', () => {
   let navParams: jasmine.SpyObj<NavParams>;
   let storage: jasmine.SpyObj<StorageProvider>;
 
+  let yearMock;
+  let monthMock;
+
   function els() {
     return {
       weekdayNames: fixture.nativeElement.querySelectorAll('.weekday-name'),
@@ -58,6 +61,28 @@ describe('Page1', () => {
 
   });
 
+  beforeEach(() => {
+
+    console.log('spy');
+
+    monthMock = 7; // August.
+    yearMock = 2018;
+
+    navParams.get.and.callFake(function (param) {
+
+      console.log('hello!');
+
+      if (param === 'month') {
+        return monthMock;
+      }
+      if (param === 'year') {
+        return yearMock;
+      }
+
+    });
+
+  });
+
 
   it('should show weekday names', () => {
 
@@ -73,7 +98,7 @@ describe('Page1', () => {
 
   });
 
-  it('should allow navigating to the previous month', () => {
+  it('should navigate to the previous month', () => {
 
     spyOn(navCtrl, 'push');
 
@@ -88,6 +113,14 @@ describe('Page1', () => {
 
     // After that, update CalendarPage to grab year/month from the URL to display the month.
     // Then implement the forward button.
+
+  });
+
+  it('should navigate to the previous month when it is in the previous year', () => {
+
+    // Simulate that it is Jan 2018.
+    // Click previous.
+    // Verify that it navigated to Dec 2017.
 
   });
 
