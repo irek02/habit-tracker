@@ -40,6 +40,13 @@ export class CalendarPage implements OnInit {
     });
   }
 
+  goToNextMonth() {
+    this.navCtrl.push('calendar-page', {
+      year: this.year,
+      month: this.month + 1
+    });
+  }
+
   goToDay(day: number) {
     this.navCtrl.push('day-page', {
       year: this.year,

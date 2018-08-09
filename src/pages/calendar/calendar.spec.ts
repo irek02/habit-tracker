@@ -23,7 +23,8 @@ describe('Page1', () => {
   function els() {
     return {
       weekdayNames: fixture.nativeElement.querySelectorAll('.weekday-name'),
-      previousBtn: fixture.debugElement.query(By.css('.previousBtn'))
+      previousBtn: fixture.debugElement.query(By.css('.previousBtn')),
+      nextBtn: fixture.debugElement.query(By.css('.nextBtn'))
     }
   }
 
@@ -105,8 +106,6 @@ describe('Page1', () => {
       month: 6
     });
 
-    // Then implement the forward button.
-
   });
 
   it('should navigate to the previous month when it is in the previous year', () => {
@@ -120,7 +119,16 @@ describe('Page1', () => {
 
   it('should to the next month', () => {
 
-    expect(true).toBe(true);
+    spyOn(navCtrl, 'push');
+
+    fixture.detectChanges();
+
+    els().nextBtn.triggerEventHandler('click', null);
+
+    expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
+      year: 2018,
+      month: 8
+    });
 
   });
 
