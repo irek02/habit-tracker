@@ -117,7 +117,7 @@ describe('Page1', () => {
 
   });
 
-  it('should to the next month', () => {
+  it('should navigate to the next month', () => {
 
     spyOn(navCtrl, 'push');
 
@@ -129,6 +129,11 @@ describe('Page1', () => {
       year: 2018,
       month: 8
     });
+
+  });
+
+  it('should not show the next button when displaying the current month', () => {
+
 
   });
 
