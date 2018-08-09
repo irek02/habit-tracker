@@ -1,25 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as calendar from 'calendar';
 import {StorageProvider} from "../../providers/storage/storage";
 
-/**
- * Generated class for the CalendarPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage({
   name: 'calendar-page',
-  segment: 'calendar'
+  segment: 'calendar/:year/:month'
 })
 @Component({
   selector: 'page-calendar',
   templateUrl: 'calendar.html',
   providers: [ StorageProvider ]
 })
-export class CalendarPage {
+export class CalendarPage implements OnInit {
 
   year: number;
   month: number;
@@ -31,15 +24,20 @@ export class CalendarPage {
     public navParams: NavParams,
     public storage: StorageProvider
   ) {
-    this.year = 2018;
-    this.month = 7;
-    this.calendar = new calendar.Calendar(0).monthDays(this.year, this.month);
+
   }
 
   getDayId(day: number) {
 
     return this.getMonthName(this.month) + '-' + day + '-' + this.year;
 
+  }
+
+  goToPreviousMonth() {
+    this.navCtrl.push('calendar-page', {
+      year: this.year,
+      month: this.month - 1
+    });
   }
 
   goToDay(day: number) {
@@ -82,6 +80,12 @@ export class CalendarPage {
 
     return this.getDayId(day) + '--' + slot;
 
+  }
+
+  ngOnInit() {
+    this.year = parseInt(this.navParams.get('year'));
+    this.month = parseInt(this.navParams.get('month'));
+    this.calendar = new calendar.Calendar(0).monthDays(this.year, this.month);
   }
 
   ionViewDidLoad() {
