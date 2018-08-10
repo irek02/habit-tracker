@@ -109,12 +109,21 @@ describe('Page1', () => {
 
   });
 
-  it('should navigate to the previous month when it is in the previous year', () => {
+  it('should navigate to the previous year', () => {
 
-    // Simulate that it is Jan 2018.
-    // Click previous.
-    // Verify that it navigated to Dec 2017.
-    expect(true).toBe(true);
+    monthMock = 0; // January.
+    yearMock = 2018;
+
+    spyOn(navCtrl, 'push');
+
+    fixture.detectChanges();
+
+    els().previousBtn.triggerEventHandler('click', null);
+
+    expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
+      year: 2017,
+      month: 11 // December.
+    });
 
   });
 
@@ -141,6 +150,24 @@ describe('Page1', () => {
     monthMock = moment().month(); // Current month.
 
     expect(els().nextBtn).toBeFalsy();
+
+  });
+
+  it('should navigate to the next year', () => {
+
+    monthMock = 11; // December.
+    yearMock = 2017;
+
+    spyOn(navCtrl, 'push');
+
+    fixture.detectChanges();
+
+    els().nextBtn.triggerEventHandler('click', null);
+
+    expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
+      year: 2018,
+      month: 0 // January.
+    });
 
   });
 

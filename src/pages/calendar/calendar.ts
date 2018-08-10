@@ -41,17 +41,40 @@ export class CalendarPage implements OnInit {
   }
 
   goToPreviousMonth() {
-    this.navCtrl.push('calendar-page', {
-      year: this.year,
-      month: this.month - 1
-    });
+
+    const prevMonth = this.month - 1;
+
+    if (prevMonth == -1) {
+      this.navCtrl.push('calendar-page', {
+        year: this.year - 1,
+        month: 11 // December.
+      });
+    }
+    else {
+      this.navCtrl.push('calendar-page', {
+        year: this.year,
+        month: prevMonth
+      });
+    }
+
   }
 
   goToNextMonth() {
-    this.navCtrl.push('calendar-page', {
-      year: this.year,
-      month: this.month + 1
-    });
+    const nextMonth = this.month + 1;
+
+    if (nextMonth == 12) {
+      this.navCtrl.push('calendar-page', {
+        year: this.year + 1,
+        month: 0
+      });
+    }
+    else {
+      this.navCtrl.push('calendar-page', {
+        year: this.year,
+        month: nextMonth
+      });
+    }
+
   }
 
   goToDay(day: number) {
