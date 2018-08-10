@@ -18,8 +18,20 @@ td {
   position: relative;
 }
 
-.slot.checked {
-  background-color: green;
+.slot.slot-1.checked {
+  background-color: #f4511e;
+}
+.slot.slot-2.checked {
+  background-color: #e53935;
+}
+.slot.slot-3.checked {
+  background-color: #fb8c00;
+}
+.slot.slot-4.checked {
+  background-color: #00897b;
+}
+.slot.slot-5.checked {
+  background-color: #1e88e5;
 }
 
 .day {
