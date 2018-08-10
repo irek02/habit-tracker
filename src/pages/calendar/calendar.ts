@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as calendar from 'calendar';
 import {StorageProvider} from "../../providers/storage/storage";
+import * as moment from 'moment';
 
 @IonicPage({
   name: 'calendar-page',
@@ -30,6 +31,12 @@ export class CalendarPage implements OnInit {
   getDayId(day: number) {
 
     return this.getMonthName(this.month) + '-' + day + '-' + this.year;
+
+  }
+
+  isCurrentMonth() {
+
+    return this.month == moment().month();
 
   }
 

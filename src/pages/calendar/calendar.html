@@ -11,7 +11,12 @@
 <ion-content padding>
 
   <a class="previousBtn" (click)="goToPreviousMonth()">Previous</a>
-  <a class="nextBtn" (click)="goToNextMonth()">Next</a>
+
+
+  <a
+    *ngIf="!isCurrentMonth()"
+    class="nextBtn"
+    (click)="goToNextMonth()">Next</a>
 
   <div margin-bottom text-center class="year-month">
     <div class="text-large">{{ getMonthName(month) }}</div>

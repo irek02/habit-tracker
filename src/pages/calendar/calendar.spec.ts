@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {StorageProvider} from "../../providers/storage/storage";
 import { spyOnClass } from 'jasmine-es6-spies';
 import {CalendarPageModule} from "./calendar.module";
+import * as moment from 'moment';
 
 describe('Page1', () => {
 
@@ -119,6 +120,9 @@ describe('Page1', () => {
 
   it('should navigate to the next month', () => {
 
+    monthMock = 4; // May.
+    yearMock = 2018;
+
     spyOn(navCtrl, 'push');
 
     fixture.detectChanges();
@@ -127,13 +131,16 @@ describe('Page1', () => {
 
     expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
       year: 2018,
-      month: 8
+      month: 5
     });
 
   });
 
   it('should not show the next button when displaying the current month', () => {
 
+    monthMock = moment().month(); // Current month.
+
+    expect(els().nextBtn).toBeFalsy();
 
   });
 
