@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as calendar from 'calendar';
 import {StorageProvider} from "../../providers/storage/storage";
+import * as moment from 'moment';
 
 @IonicPage({
   name: 'calendar-page',
@@ -33,11 +34,47 @@ export class CalendarPage implements OnInit {
 
   }
 
+  isCurrentMonth() {
+
+    return this.month == moment().month();
+
+  }
+
   goToPreviousMonth() {
-    this.navCtrl.push('calendar-page', {
-      year: this.year,
-      month: this.month - 1
-    });
+
+    const prevMonth = this.month - 1;
+
+    if (prevMonth == -1) {
+      this.navCtrl.push('calendar-page', {
+        year: this.year - 1,
+        month: 11 // December.
+      });
+    }
+    else {
+      this.navCtrl.push('calendar-page', {
+        year: this.year,
+        month: prevMonth
+      });
+    }
+
+  }
+
+  goToNextMonth() {
+    const nextMonth = this.month + 1;
+
+    if (nextMonth == 12) {
+      this.navCtrl.push('calendar-page', {
+        year: this.year + 1,
+        month: 0
+      });
+    }
+    else {
+      this.navCtrl.push('calendar-page', {
+        year: this.year,
+        month: nextMonth
+      });
+    }
+
   }
 
   goToDay(day: number) {

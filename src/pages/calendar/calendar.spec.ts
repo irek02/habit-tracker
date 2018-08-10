@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {StorageProvider} from "../../providers/storage/storage";
 import { spyOnClass } from 'jasmine-es6-spies';
 import {CalendarPageModule} from "./calendar.module";
+import * as moment from 'moment';
 
 describe('Page1', () => {
 
@@ -23,7 +24,8 @@ describe('Page1', () => {
   function els() {
     return {
       weekdayNames: fixture.nativeElement.querySelectorAll('.weekday-name'),
-      previousBtn: fixture.debugElement.query(By.css('.previousBtn'))
+      previousBtn: fixture.debugElement.query(By.css('.previousBtn')),
+      nextBtn: fixture.debugElement.query(By.css('.nextBtn'))
     }
   }
 
@@ -105,22 +107,67 @@ describe('Page1', () => {
       month: 6
     });
 
-    // Then implement the forward button.
+  });
+
+  it('should navigate to the previous year', () => {
+
+    monthMock = 0; // January.
+    yearMock = 2018;
+
+    spyOn(navCtrl, 'push');
+
+    fixture.detectChanges();
+
+    els().previousBtn.triggerEventHandler('click', null);
+
+    expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
+      year: 2017,
+      month: 11 // December.
+    });
 
   });
 
-  it('should navigate to the previous month when it is in the previous year', () => {
+  it('should navigate to the next month', () => {
 
-    // Simulate that it is Jan 2018.
-    // Click previous.
-    // Verify that it navigated to Dec 2017.
-    expect(true).toBe(true);
+    monthMock = 4; // May.
+    yearMock = 2018;
+
+    spyOn(navCtrl, 'push');
+
+    fixture.detectChanges();
+
+    els().nextBtn.triggerEventHandler('click', null);
+
+    expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
+      year: 2018,
+      month: 5
+    });
 
   });
 
-  it('should to the next month', () => {
+  it('should not show the next button when displaying the current month', () => {
 
-    expect(true).toBe(true);
+    monthMock = moment().month(); // Current month.
+
+    expect(els().nextBtn).toBeFalsy();
+
+  });
+
+  it('should navigate to the next year', () => {
+
+    monthMock = 11; // December.
+    yearMock = 2017;
+
+    spyOn(navCtrl, 'push');
+
+    fixture.detectChanges();
+
+    els().nextBtn.triggerEventHandler('click', null);
+
+    expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
+      year: 2018,
+      month: 0 // January.
+    });
 
   });
 

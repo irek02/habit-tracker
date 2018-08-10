@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {CalendarPage} from "../pages/calendar/calendar";
+import * as moment from 'moment';
 
 
 @Component({
@@ -44,7 +45,7 @@ export class MyApp {
       this.splashScreen.hide();
       this.nav.setRoot('calendar-page', {
         year: '2018',
-        month: '9'
+        month: moment().month()
       });
     });
   }
