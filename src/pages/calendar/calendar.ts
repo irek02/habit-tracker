@@ -124,15 +124,9 @@ export class CalendarPage implements OnInit {
 
   }
 
-  getLabel(id: number) {
+  getLabel(id: string) {
 
     const labels = this.storage.getLabelsForMonth(this.year + '-' + this.getMonthName(this.month));
-
-    // console.log(this.storage.getLabelsForMonth('foo'));
-
-    // console.log(this.storage);
-    // console.log(this.navParams);
-
 
     return labels[id];
 

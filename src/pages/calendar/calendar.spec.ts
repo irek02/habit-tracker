@@ -208,33 +208,20 @@ describe('Page1', () => {
 
     it('should show existing labels', () => {
 
+      storage.getLabelsForMonth.and.returnValue({
+        habit1: 'Running',
+        habit3: 'Reading for 25 minutes'
+      });
+
       fixture.detectChanges();
 
-      // console.log(navParams);
-      // console.log(storage);
+      expect(els().habitLabelInputs[0].value).toBe('Running');
+      expect(els().habitLabelInputs[1].value).toBeFalsy();
+      expect(els().habitLabelInputs[2].value).toBe('Reading for 25 minutes');
+      expect(els().habitLabelInputs[3].value).toBeFalsy();
+      expect(els().habitLabelInputs[4].value).toBeFalsy();
 
-      // Mock that the BE returns names for habits 1 and 3, the others don't have label.
-      // storage.getLabelsForMonth.and.returnValue({
-      //   habit1: 'Running',
-      //   habit3: 'Reading for 25 minutes'
-      // });
-
-
-      // spyOn(storage, 'getLabelsForMonth').and.returnValue({
-      //   habit1: 'Running',
-      //   habit3: 'Reading for 25 minutes'
-      // });
-
-
-
-
-
-      // Assert that the inputs show correct values for those labels
-      // expect(els().habitLabelInputs[0].value).toBe('Running');
-      // expect(els().habitLabelInputs[1].value).toBeFalsy();
-      // expect(els().habitLabelInputs[2].value).toBe('Reading for 25 minutes');
-      // expect(els().habitLabelInputs[3].value).toBeFalsy();
-      // expect(els().habitLabelInputs[4].value).toBeFalsy();
+      expect(storage.getLabelsForMonth).toHaveBeenCalledWith('2018-august');
 
     });
 
