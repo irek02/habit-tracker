@@ -11,7 +11,6 @@ import * as moment from 'moment';
 @Component({
   selector: 'page-calendar',
   templateUrl: 'calendar.html',
-  providers: [ StorageProvider ]
 })
 export class CalendarPage implements OnInit {
 
