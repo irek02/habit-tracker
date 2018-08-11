@@ -48,5 +48,11 @@ export class StorageProvider {
 
   }
 
+  getLabelsForMonth(id: string): Object {
+
+    return { foo: 'hello' };
+
+  }
+
 
 }

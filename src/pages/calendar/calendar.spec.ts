@@ -24,12 +24,25 @@ describe('Page1', () => {
   function els() {
     return {
       weekdayNames: fixture.nativeElement.querySelectorAll('.weekday-name'),
+      habitLabels: fixture.nativeElement.querySelectorAll('.label'),
+      habitLabelInputs: fixture.nativeElement.querySelectorAll('.label input'),
       previousBtn: fixture.debugElement.query(By.css('.previousBtn')),
       nextBtn: fixture.debugElement.query(By.css('.nextBtn'))
     }
   }
 
+  const createComponent = () => {
+
+    fixture = TestBed.createComponent(CalendarPage);
+    fixture.detectChanges();
+
+  };
+
   class NavCtrlMock {
+    push () {}
+  }
+
+  class StorageMock {
     push () {}
   }
 
@@ -53,11 +66,11 @@ describe('Page1', () => {
 
   beforeEach(() => {
 
-    fixture = TestBed.createComponent(CalendarPage);
+    // fixture = TestBed.createComponent(CalendarPage);
     navCtrl = TestBed.get(NavController);
     navParams = TestBed.get(NavParams);
     storage = TestBed.get(StorageProvider);
-    comp = fixture.componentInstance;
+    // comp = fixture.componentInstance;
 
   });
 
@@ -75,6 +88,11 @@ describe('Page1', () => {
         return yearMock;
       }
 
+    });
+
+    storage.getLabelsForMonth.and.returnValue({
+      habit1: 'Running',
+      habit3: 'Reading for 25 minutes'
     });
 
   });
@@ -175,6 +193,56 @@ describe('Page1', () => {
 
   });
 
+  describe('habit labels', () => {
+
+    it('should show habit labels', () => {
+
+      expect(els().habitLabels.length).toBe(5);
+
+    });
+
+    it('should show input for a habit label', () => {
+
+      expect(els().habitLabelInputs[0]).toBeTruthy();
+      // expect(els().habitLabelInputs[0]).
+
+    });
+
+    fit('should show existing labels', () => {
+      createComponent();
+      console.log(navParams);
+      console.log(storage);
+
+      // Mock that the BE returns names for habits 1 and 3, the others don't have label.
+      // storage.getLabelsForMonth.and.returnValue({
+      //   habit1: 'Running',
+      //   habit3: 'Reading for 25 minutes'
+      // });
+
+
+      // spyOn(storage, 'getLabelsForMonth').and.returnValue({
+      //   habit1: 'Running',
+      //   habit3: 'Reading for 25 minutes'
+      // });
+
+      console.log('afrer spy set', storage.getLabelsForMonth());
+
+      // fixture.
+
+      // createComponent();
+      fixture.detectChanges();
+
+
+      // Assert that the inputs show correct values for those labels
+      expect(els().habitLabelInputs[0].value).toBe('Running');
+      expect(els().habitLabelInputs[1].value).toBeFalsy();
+      expect(els().habitLabelInputs[2].value).toBe('Reading for 25 minutes');
+      expect(els().habitLabelInputs[3].value).toBeFalsy();
+      expect(els().habitLabelInputs[4].value).toBeFalsy();
+
+    });
+
+  });
 
 });
 
