@@ -94,82 +94,87 @@ describe('Page1', () => {
 
   });
 
-  it('should navigate to the previous month', () => {
+  describe('previous/next navigation', () => {
 
-    spyOn(navCtrl, 'push');
+    it('should navigate to the previous month', () => {
 
-    fixture.detectChanges();
+      spyOn(navCtrl, 'push');
 
-    els().previousBtn.triggerEventHandler('click', null);
+      fixture.detectChanges();
 
-    expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
-      year: 2018,
-      month: 6
+      els().previousBtn.triggerEventHandler('click', null);
+
+      expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
+        year: 2018,
+        month: 6
+      });
+
+    });
+
+    it('should navigate to the previous year', () => {
+
+      monthMock = 0; // January.
+      yearMock = 2018;
+
+      spyOn(navCtrl, 'push');
+
+      fixture.detectChanges();
+
+      els().previousBtn.triggerEventHandler('click', null);
+
+      expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
+        year: 2017,
+        month: 11 // December.
+      });
+
+    });
+
+    it('should navigate to the next month', () => {
+
+      monthMock = 4; // May.
+      yearMock = 2018;
+
+      spyOn(navCtrl, 'push');
+
+      fixture.detectChanges();
+
+      els().nextBtn.triggerEventHandler('click', null);
+
+      expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
+        year: 2018,
+        month: 5
+      });
+
+    });
+
+    it('should not show the next button when displaying the current month', () => {
+
+      monthMock = moment().month(); // Current month.
+
+      expect(els().nextBtn).toBeFalsy();
+
+    });
+
+    it('should navigate to the next year', () => {
+
+      monthMock = 11; // December.
+      yearMock = 2017;
+
+      spyOn(navCtrl, 'push');
+
+      fixture.detectChanges();
+
+      els().nextBtn.triggerEventHandler('click', null);
+
+      expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
+        year: 2018,
+        month: 0 // January.
+      });
+
     });
 
   });
 
-  it('should navigate to the previous year', () => {
-
-    monthMock = 0; // January.
-    yearMock = 2018;
-
-    spyOn(navCtrl, 'push');
-
-    fixture.detectChanges();
-
-    els().previousBtn.triggerEventHandler('click', null);
-
-    expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
-      year: 2017,
-      month: 11 // December.
-    });
-
-  });
-
-  it('should navigate to the next month', () => {
-
-    monthMock = 4; // May.
-    yearMock = 2018;
-
-    spyOn(navCtrl, 'push');
-
-    fixture.detectChanges();
-
-    els().nextBtn.triggerEventHandler('click', null);
-
-    expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
-      year: 2018,
-      month: 5
-    });
-
-  });
-
-  it('should not show the next button when displaying the current month', () => {
-
-    monthMock = moment().month(); // Current month.
-
-    expect(els().nextBtn).toBeFalsy();
-
-  });
-
-  it('should navigate to the next year', () => {
-
-    monthMock = 11; // December.
-    yearMock = 2017;
-
-    spyOn(navCtrl, 'push');
-
-    fixture.detectChanges();
-
-    els().nextBtn.triggerEventHandler('click', null);
-
-    expect(navCtrl.push).toHaveBeenCalledWith('calendar-page', {
-      year: 2018,
-      month: 0 // January.
-    });
-
-  });
 
 });
 

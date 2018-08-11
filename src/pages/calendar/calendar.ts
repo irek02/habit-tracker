@@ -28,6 +28,12 @@ export class CalendarPage implements OnInit {
 
   }
 
+  ngOnInit() {
+    this.year = parseInt(this.navParams.get('year'));
+    this.month = parseInt(this.navParams.get('month'));
+    this.calendar = new calendar.Calendar(0).monthDays(this.year, this.month);
+  }
+
   getDayId(day: number) {
 
     return this.getMonthName(this.month) + '-' + day + '-' + this.year;
@@ -117,12 +123,6 @@ export class CalendarPage implements OnInit {
 
     return this.getDayId(day) + '--' + slot;
 
-  }
-
-  ngOnInit() {
-    this.year = parseInt(this.navParams.get('year'));
-    this.month = parseInt(this.navParams.get('month'));
-    this.calendar = new calendar.Calendar(0).monthDays(this.year, this.month);
   }
 
   ionViewDidLoad() {
