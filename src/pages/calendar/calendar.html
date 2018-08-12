@@ -12,7 +12,6 @@
 
   <a class="previousBtn" (click)="goToPreviousMonth()">Previous</a>
 
-
   <a
     *ngIf="!isCurrentMonth()"
     class="nextBtn"
@@ -49,6 +48,14 @@
       </td>
     </tr>
   </table>
+
+  <ion-grid padding-top>
+    <ion-row justify-content-center class="label" *ngFor="let labelId of [1, 2, 3, 4, 5]">
+      <ion-col col-1><div float-right class="color-box color-box-{{ labelId }}"></div></ion-col>
+      <!--<ion-col col-1> - </ion-col>-->
+      <ion-col col-3><input #box (blur)="updateLabel(labelId, box.value)" value="{{ getLabel(labelId) }}" placeholder="Habit#{{ labelId }}"></ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
 

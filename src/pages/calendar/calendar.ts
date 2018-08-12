@@ -11,14 +11,12 @@ import * as moment from 'moment';
 @Component({
   selector: 'page-calendar',
   templateUrl: 'calendar.html',
-  providers: [ StorageProvider ]
 })
 export class CalendarPage implements OnInit {
 
   year: number;
   month: number;
   calendar: object;
-
 
   constructor(
     public navCtrl: NavController,
@@ -122,6 +120,20 @@ export class CalendarPage implements OnInit {
   getSlotId(day: number, slot: number) {
 
     return this.getDayId(day) + '--' + slot;
+
+  }
+
+  getLabel(id: number) {
+
+    const labels = this.storage.getLabelsForMonth(this.year + '-' + this.getMonthName(this.month));
+
+    return labels[id];
+
+  }
+
+  updateLabel(labelId: number, value: string) {
+
+    this.storage.saveLabelForMonth(this.year + '-' + this.getMonthName(this.month), labelId, value);
 
   }
 

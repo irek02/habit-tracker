@@ -48,5 +48,41 @@ export class StorageProvider {
 
   }
 
+  getLabelsForMonth(month: string): Object {
+
+    let months = localStorage.getItem('habit-tracker-calendar-labels');
+
+    if (months) {
+
+      const result = JSON.parse(months);
+
+      return result[month] || {};
+
+    }
+
+    return {};
+
+  }
+
+  saveLabelForMonth(month: string, name: number, value: string) {
+
+    let labelsObj = {};
+
+    let labelsStr = localStorage.getItem('habit-tracker-calendar-labels');
+
+    if (labelsStr) {
+
+      labelsObj = JSON.parse(labelsStr);
+
+    }
+
+    labelsObj[month] = labelsObj[month] || {};
+
+    labelsObj[month][name] = value;
+
+    localStorage.setItem('habit-tracker-calendar-labels', JSON.stringify(labelsObj));
+
+
+  }
 
 }

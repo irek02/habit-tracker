@@ -24,10 +24,19 @@ describe('Page1', () => {
   function els() {
     return {
       weekdayNames: fixture.nativeElement.querySelectorAll('.weekday-name'),
+      habitLabels: fixture.nativeElement.querySelectorAll('.label'),
+      habitLabelInputs: fixture.nativeElement.querySelectorAll('.label input'),
       previousBtn: fixture.debugElement.query(By.css('.previousBtn')),
       nextBtn: fixture.debugElement.query(By.css('.nextBtn'))
     }
   }
+
+  // const createComponent = () => {
+  //
+  //   fixture = TestBed.createComponent(CalendarPage);
+  //   fixture.detectChanges();
+  //
+  // };
 
   class NavCtrlMock {
     push () {}
@@ -75,6 +84,13 @@ describe('Page1', () => {
         return yearMock;
       }
 
+    });
+
+    storage.getCheckedSlots.and.returnValue([]);
+
+    storage.getLabelsForMonth.and.returnValue({
+      1: 'Running',
+      3: 'Reading for 25 minutes'
     });
 
   });
@@ -175,6 +191,56 @@ describe('Page1', () => {
 
   });
 
+  describe('habit labels', () => {
+
+    it('should show habit labels', () => {
+
+      fixture.detectChanges();
+
+      expect(els().habitLabels.length).toBe(5);
+
+    });
+
+    it('should show input for a habit label', () => {
+
+      fixture.detectChanges();
+
+      expect(els().habitLabelInputs[0]).toBeTruthy();
+
+    });
+
+    it('should show existing labels', () => {
+
+      storage.getLabelsForMonth.and.returnValue({
+        1: 'Running',
+        3: 'Reading for 25 minutes'
+      });
+
+      fixture.detectChanges();
+
+      expect(els().habitLabelInputs[0].value).toBe('Running');
+      expect(els().habitLabelInputs[1].value).toBeFalsy();
+      expect(els().habitLabelInputs[2].value).toBe('Reading for 25 minutes');
+      expect(els().habitLabelInputs[3].value).toBeFalsy();
+      expect(els().habitLabelInputs[4].value).toBeFalsy();
+
+      expect(storage.getLabelsForMonth).toHaveBeenCalledWith('2018-august');
+
+    });
+
+    it('should save label to storage', () => {
+
+      fixture.detectChanges();
+
+      els().habitLabelInputs[0].value = 'My habit';
+
+      els().habitLabelInputs[0].dispatchEvent(new Event("blur"));
+
+      expect(storage.saveLabelForMonth).toHaveBeenCalledWith('2018-august', 1, 'My habit');
+
+    });
+
+  });
 
 });
 
