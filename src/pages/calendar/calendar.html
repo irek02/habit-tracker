@@ -12,7 +12,6 @@
 
   <a class="previousBtn" (click)="goToPreviousMonth()">Previous</a>
 
-
   <a
     *ngIf="!isCurrentMonth()"
     class="nextBtn"
@@ -50,24 +49,8 @@
     </tr>
   </table>
 
-  <div class="label">
-    <input #box (blur)="updateLabel('habit1', box.value)" value="{{ getLabel('habit1') }}">
-  </div>
-
-  <div class="label">
-    <input value="{{ getLabel('habit2') }}">
-  </div>
-
-  <div class="label">
-    <input value="{{ getLabel('habit3') }}">
-  </div>
-
-  <div class="label">
-    <input value="{{ getLabel('habit4') }}">
-  </div>
-
-  <div class="label">
-    <input value="{{ getLabel('habit5') }}">
+  <div class="label" *ngFor="let labelId of [1, 2, 3, 4, 5]">
+    <input #box (blur)="updateLabel(labelId, box.value)" value="{{ getLabel(labelId) }}">
   </div>
 
 </ion-content>

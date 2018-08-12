@@ -89,8 +89,8 @@ describe('Page1', () => {
     storage.getCheckedSlots.and.returnValue([]);
 
     storage.getLabelsForMonth.and.returnValue({
-      habit1: 'Running',
-      habit3: 'Reading for 25 minutes'
+      1: 'Running',
+      3: 'Reading for 25 minutes'
     });
 
   });
@@ -195,11 +195,15 @@ describe('Page1', () => {
 
     it('should show habit labels', () => {
 
+      fixture.detectChanges();
+
       expect(els().habitLabels.length).toBe(5);
 
     });
 
     it('should show input for a habit label', () => {
+
+      fixture.detectChanges();
 
       expect(els().habitLabelInputs[0]).toBeTruthy();
       // expect(els().habitLabelInputs[0]).
@@ -209,8 +213,8 @@ describe('Page1', () => {
     it('should show existing labels', () => {
 
       storage.getLabelsForMonth.and.returnValue({
-        habit1: 'Running',
-        habit3: 'Reading for 25 minutes'
+        1: 'Running',
+        3: 'Reading for 25 minutes'
       });
 
       fixture.detectChanges();
@@ -233,7 +237,7 @@ describe('Page1', () => {
 
       els().habitLabelInputs[0].dispatchEvent(new Event("blur"));
 
-      expect(storage.saveLabelForMonth).toHaveBeenCalledWith('2018-august', 'habit1', 'My habit');
+      expect(storage.saveLabelForMonth).toHaveBeenCalledWith('2018-august', 1, 'My habit');
 
     });
 

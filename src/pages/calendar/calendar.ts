@@ -18,7 +18,6 @@ export class CalendarPage implements OnInit {
   month: number;
   calendar: object;
 
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -124,7 +123,7 @@ export class CalendarPage implements OnInit {
 
   }
 
-  getLabel(id: string) {
+  getLabel(id: number) {
 
     const labels = this.storage.getLabelsForMonth(this.year + '-' + this.getMonthName(this.month));
 
