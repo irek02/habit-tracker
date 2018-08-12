@@ -132,6 +132,12 @@ export class CalendarPage implements OnInit {
 
   }
 
+  updateLabel(name, value) {
+
+    this.storage.saveLabelForMonth(this.year + '-' + this.getMonthName(this.month), name, value);
+
+  }
+
   ionViewDidLoad() {
 
   }

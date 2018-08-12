@@ -54,5 +54,10 @@ export class StorageProvider {
 
   }
 
+  saveLabelForMonth(month: string, name: string, value: string) {
+
+    console.log(month, name, value);
+
+  }
 
 }

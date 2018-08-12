@@ -225,6 +225,18 @@ describe('Page1', () => {
 
     });
 
+    it('should save label to storage', () => {
+
+      fixture.detectChanges();
+
+      els().habitLabelInputs[0].value = 'My habit';
+
+      els().habitLabelInputs[0].dispatchEvent(new Event("blur"));
+
+      expect(storage.saveLabelForMonth).toHaveBeenCalledWith('2018-august', 'habit1', 'My habit');
+
+    });
+
   });
 
 });

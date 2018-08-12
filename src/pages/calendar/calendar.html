@@ -51,7 +51,7 @@
   </table>
 
   <div class="label">
-    <input value="{{ getLabel('habit1') }}">
+    <input #box (blur)="updateLabel('habit1', box.value)" value="{{ getLabel('habit1') }}">
   </div>
 
   <div class="label">
