@@ -131,9 +131,9 @@ export class CalendarPage implements OnInit {
 
   }
 
-  updateLabel(name, value) {
+  updateLabel(labelId: number, value: string) {
 
-    this.storage.saveLabelForMonth(this.year + '-' + this.getMonthName(this.month), name, value);
+    this.storage.saveLabelForMonth(this.year + '-' + this.getMonthName(this.month), labelId, value);
 
   }
 

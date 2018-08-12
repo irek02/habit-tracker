@@ -206,7 +206,6 @@ describe('Page1', () => {
       fixture.detectChanges();
 
       expect(els().habitLabelInputs[0]).toBeTruthy();
-      // expect(els().habitLabelInputs[0]).
 
     });
 
