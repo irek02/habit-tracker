@@ -10,52 +10,82 @@
 
 <ion-content padding>
 
-  <a class="previousBtn" (click)="goToPreviousMonth()">Previous</a>
+  <ion-grid>
 
-  <a
-    *ngIf="!isCurrentMonth()"
-    class="nextBtn"
-    (click)="goToNextMonth()">Next</a>
+    <ion-row justify-content-center>
 
-  <div margin-bottom text-center class="year-month">
-    <div class="text-large">{{ getMonthName(month) }}</div>
-    <div>{{ year }}</div>
-  </div>
+      <ion-col col-1>
+        <a class="previousBtn" (click)="goToPreviousMonth()">P</a>
+      </ion-col>
 
-  <table class="center">
-    <tr>
-      <td class="weekday-name">Sun</td>
-      <td class="weekday-name">Mon</td>
-      <td class="weekday-name">Tue</td>
-      <td class="weekday-name">Wed</td>
-      <td class="weekday-name">Thu</td>
-      <td class="weekday-name">Fri</td>
-      <td class="weekday-name">Sat</td>
-    </tr>
-    <tr *ngFor="let week of calendar">
-      <td *ngFor="let day of week" id="{{ this.getDayId(day) }}" (click)="goToDay(day)">
+      <ion-col col-6>
 
-        <div *ngIf="day" class="day">
-
-          <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(day, 1), 'date': true}"><div class="content">{{ day }}</div></div>
-          <div [ngClass]="{'slot': true, 'slot-2': true, 'checked': isSlotChecked(day, 2)}"></div>
-          <div [ngClass]="{'slot': true, 'slot-3': true, 'checked': isSlotChecked(day, 3)}"></div>
-          <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(day, 4)}"></div>
-          <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(day, 5)}"></div>
-
+        <div text-center class="year-month">
+          <div class="text-large">{{ getMonthName(month) }}</div>
+          <div>{{ year }}</div>
         </div>
 
-      </td>
-    </tr>
-  </table>
+      </ion-col>
 
-  <ion-grid padding-top>
-    <ion-row justify-content-center class="label" *ngFor="let labelId of [1, 2, 3, 4, 5]">
-      <ion-col col-1><div float-right class="color-box color-box-{{ labelId }}"></div></ion-col>
-      <!--<ion-col col-1> - </ion-col>-->
-      <ion-col col-3><input #box (blur)="updateLabel(labelId, box.value)" value="{{ getLabel(labelId) }}" placeholder="Habit#{{ labelId }}"></ion-col>
+      <ion-col col-1 text-right>
+        <a
+          *ngIf="!isCurrentMonth()"
+          class="nextBtn"
+          (click)="goToNextMonth()">N</a>
+      </ion-col>
+
     </ion-row>
+
+    <ion-row justify-content-center>
+
+      <ion-col>
+
+        <table class="center">
+          <tr>
+            <td class="weekday-name">Sun</td>
+            <td class="weekday-name">Mon</td>
+            <td class="weekday-name">Tue</td>
+            <td class="weekday-name">Wed</td>
+            <td class="weekday-name">Thu</td>
+            <td class="weekday-name">Fri</td>
+            <td class="weekday-name">Sat</td>
+          </tr>
+          <tr *ngFor="let week of calendar">
+            <td *ngFor="let day of week" id="{{ this.getDayId(day) }}" (click)="goToDay(day)">
+
+              <div *ngIf="day" class="day">
+
+                <div [ngClass]="{'slot': true, 'slot-1': true, 'checked': isSlotChecked(day, 1), 'date': true}"><div class="content">{{ day }}</div></div>
+                <div [ngClass]="{'slot': true, 'slot-2': true, 'checked': isSlotChecked(day, 2)}"></div>
+                <div [ngClass]="{'slot': true, 'slot-3': true, 'checked': isSlotChecked(day, 3)}"></div>
+                <div [ngClass]="{'slot': true, 'slot-4': true, 'checked': isSlotChecked(day, 4)}"></div>
+                <div [ngClass]="{'slot': true, 'slot-5': true, 'checked': isSlotChecked(day, 5)}"></div>
+
+              </div>
+
+            </td>
+          </tr>
+        </table>
+
+      </ion-col>
+
+    </ion-row>
+
+
+
+
+
+    <!--<ion-grid padding-top>-->
+      <ion-row justify-content-center class="label" *ngFor="let labelId of [1, 2, 3, 4, 5]">
+        <ion-col col-1><div float-right class="color-box color-box-{{ labelId }}"></div></ion-col>
+        <!--<ion-col col-1> - </ion-col>-->
+        <ion-col col-3><input #box (blur)="updateLabel(labelId, box.value)" value="{{ getLabel(labelId) }}" placeholder="Habit#{{ labelId }}"></ion-col>
+      </ion-row>
+    <!--</ion-grid>-->
+
   </ion-grid>
+
+
 
 </ion-content>
 
