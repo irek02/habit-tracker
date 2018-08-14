@@ -10,15 +10,17 @@
 
 <ion-content padding>
 
-  <ion-grid>
+  <ion-grid fixed>
 
-    <ion-row justify-content-center>
+    <ion-row justify-content-center align-items-center>
 
-      <ion-col col-1>
-        <a class="previousBtn" (click)="goToPreviousMonth()">P</a>
+      <ion-col text-right>
+        <a class="previousBtn" (click)="goToPreviousMonth()" padding-right>
+          <ion-icon name="arrow-back"></ion-icon>
+        </a>
       </ion-col>
 
-      <ion-col col-6>
+      <ion-col>
 
         <div text-center class="year-month">
           <div class="text-large">{{ getMonthName(month) }}</div>
@@ -27,11 +29,14 @@
 
       </ion-col>
 
-      <ion-col col-1 text-right>
+      <ion-col text-left>
         <a
           *ngIf="!isCurrentMonth()"
           class="nextBtn"
-          (click)="goToNextMonth()">N</a>
+          (click)="goToNextMonth()"
+          padding-left>
+          <ion-icon name="arrow-forward"></ion-icon>
+        </a>
       </ion-col>
 
     </ion-row>
@@ -75,13 +80,10 @@
 
 
 
-    <!--<ion-grid padding-top>-->
-      <ion-row justify-content-center class="label" *ngFor="let labelId of [1, 2, 3, 4, 5]">
-        <ion-col col-1><div float-right class="color-box color-box-{{ labelId }}"></div></ion-col>
-        <!--<ion-col col-1> - </ion-col>-->
-        <ion-col col-3><input #box (blur)="updateLabel(labelId, box.value)" value="{{ getLabel(labelId) }}" placeholder="Habit#{{ labelId }}"></ion-col>
-      </ion-row>
-    <!--</ion-grid>-->
+    <ion-row justify-content-center class="label" *ngFor="let labelId of [1, 2, 3, 4, 5]">
+      <ion-col col-1><div float-right class="color-box color-box-{{ labelId }}"></div></ion-col>
+      <ion-col col-3><input #box (blur)="updateLabel(labelId, box.value)" value="{{ getLabel(labelId) }}" placeholder="Habit#{{ labelId }}"></ion-col>
+    </ion-row>
 
   </ion-grid>
 
