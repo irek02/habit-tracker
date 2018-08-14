@@ -6,7 +6,8 @@ import * as moment from 'moment';
 
 @IonicPage({
   name: 'calendar-page',
-  segment: 'calendar/:year/:month'
+  segment: 'calendar/:year/:month',
+  defaultHistory: null
 })
 @Component({
   selector: 'page-calendar',
@@ -49,13 +50,13 @@ export class CalendarPage implements OnInit {
     const prevMonth = this.month - 1;
 
     if (prevMonth == -1) {
-      this.navCtrl.push('calendar-page', {
+      this.navCtrl.setRoot('calendar-page', {
         year: this.year - 1,
         month: 11 // December.
       });
     }
     else {
-      this.navCtrl.push('calendar-page', {
+      this.navCtrl.setRoot('calendar-page', {
         year: this.year,
         month: prevMonth
       });
@@ -67,13 +68,13 @@ export class CalendarPage implements OnInit {
     const nextMonth = this.month + 1;
 
     if (nextMonth == 12) {
-      this.navCtrl.push('calendar-page', {
+      this.navCtrl.setRoot('calendar-page', {
         year: this.year + 1,
         month: 0
       });
     }
     else {
-      this.navCtrl.push('calendar-page', {
+      this.navCtrl.setRoot('calendar-page', {
         year: this.year,
         month: nextMonth
       });
