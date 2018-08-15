@@ -4,11 +4,11 @@ $table-width: $table-cell-size * 7;
 $table-height: $table-cell-size * 5;
 $open-day-width: $table-width;
 
-$habit-color-1: #e53935;
-$habit-color-2: #8e24aa;
-$habit-color-3: #1e88e5;
-$habit-color-4: #43a047;
-$habit-color-5: #fdd835;
+$habit-color-1: #ef5350;
+$habit-color-2: #ab47bc;
+$habit-color-3: #42a5f5;
+$habit-color-4: #66bb6a;
+$habit-color-5: #ffee58;
 
 table {
   border-collapse: collapse;
@@ -50,8 +50,8 @@ td {
 }
 
 .date .content {
-  line-height: 18px;
-  font-size: 11px;
+  line-height: 17px;
+  font-size: 10px;
 }
 
 .open-day .day {
