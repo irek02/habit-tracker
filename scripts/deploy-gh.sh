@@ -1,8 +1,9 @@
 #!/bin/bash
 git branch -D gh-pages
+git push origin --delete gh-pages
 git checkout -b gh-pages
 ionic build --prod
-find . -type d ! -path './www*' ! -path './.git*' ! -path '.' | xargs rm -rf
+find . -type d ! -path './www*' ! -path './.git*' ! -path '.' ! -path './node_modules*' | xargs rm -rf
 rm -r  *.*
 mv www/* .
 rm -rf www
